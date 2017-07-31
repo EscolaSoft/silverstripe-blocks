@@ -201,7 +201,7 @@ HTML;
             <tr>
                 <td class="name">'.$class.'</td>
                 <td class="thumbnail">'.$class::CMSThumbnail().'</td>
-                <td class="description">'.$class->help.'</td>
+                <td class="description">'.$class::CMSHelp().'</td>
             </tr>
 HTML;
         }
