@@ -63,8 +63,6 @@ class ContentBlocksModule extends DataExtension {
         return $fields;
     }
 
-
-    //TODO: Problem with $classes
     public function getDynamicHelpContent($classes) {
 
         $html = <<<HTML
