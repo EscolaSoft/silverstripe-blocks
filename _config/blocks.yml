@@ -1,3 +1,6 @@
 BlocksPage:
   extensions:
     - ContentBlocksModule
+LeftAndMain:
+  extra_requirements_css:
+    - silverstripe-blocks/css/blocks.css

@@ -6,7 +6,6 @@
  * Date: 20.07.17
  * Time: 15:06
  */
-
 class ContentBlocksModule extends DataExtension {
 
     private static $create_block_tab = true;
@@ -20,7 +19,6 @@ class ContentBlocksModule extends DataExtension {
         )
     );
 
-    
     public function updateCMSFields(FieldList $fields) {
         // Relation handler for Blocks
         $SConfig = GridFieldConfig_RelationEditor::create(25);
@@ -63,6 +61,7 @@ class ContentBlocksModule extends DataExtension {
         return $fields;
     }
 
+
     public function getDynamicHelpContent($classes) {
 
         $html = <<<HTML
@@ -79,9 +78,9 @@ HTML;
         foreach ($classes as $class_name) {
             $html .= '
             <tr>
-                <td class="name">'.$class_name.'</td>
-                <td class="thumbnail">'.$class_name::getCMSThumbnail().'</td>
-                <td class="description">'.$class_name::getCMSHelp().'</td>
+                <td class="name">' . $class_name . '</td>
+                <td class="thumbnail">' . $class_name::getCMSThumbnail() . '</td>
+                <td class="description">' . $class_name::getCMSHelp() . '</td>
             </tr>
 ';
         }
