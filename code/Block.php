@@ -68,36 +68,68 @@ class Block extends DataObject {
      * Path File Thumbnail
      * @return path file
      */
-    public  function CMSThumbnailPath() {
-        $filename = BASE_PATH.self::DIR_BLOCK. $this->class . '.png';
+    public static function CMSThumbnailPath() {
+        $filename = BASE_PATH.self::DIR_BLOCK. self::singleton()->class . '.png';
         return $filename;     
     }
     /**
      * 
      * @return URL image
      */
-    public function CMSThumbnailURL() {
-        $filename = $this->CMSThumbnailPath();
+    public static function CMSThumbnailURL() {
+        $filename = self::CMSThumbnailPath();
         
         if (is_file($filename)) {
-            return BASE_URL.self::DIR_BLOCK. $this->class . '.png';
+            return BASE_URL.self::DIR_BLOCK. self::singleton()->class . '.png';
         }
         return FALSE;
     }
+
+    public static function getCMSThumbnail() {
+      $url = self::CMSThumbnailURL();
+      $output = HTMLText::create();
+      $output ->setValue('<img style="width:100px; height:auto;" src="'.$url.'" />');
+      return $output;
+    }
+
+    public static function getCMSHelp() {
+      return 'HELP please provide help!!!!';
+    }
+
+    public function CMSHelp(){
+      return self::getCMSHelp();
+    }
+
+    public static function getCMSDescription() {
+      return 'HELP please provide description!!!!';
+    }
+
+    public function CMSDescription(){
+      return self::getCMSDescription();
+    }
+
     /**
      * image thumbnail
      * @return HTML
      */
     public function CMSThumbnail(){
-        $url = $this->CMSThumbnailURL();
-        $output = HTMLText::create(); 
-        $output ->setValue('<img title="'.$this->help.'" style="width:100px; height:auto;" src="'.$url.'" />'); 
-        return $output;
+      return self::getCMSThumbnail();
     }
+    
     
     public function getCMSFields() {
         $fields = parent::getCMSFields();
         $fields->removeByName('Pages');
+
+        $help_content = '<p><strong>Description:</strong></p>';
+        $help_content .= $this->getCMSHelp();
+        $help_content .= '<hr/><p><strong>Instruction:</strong></p>';
+        $help_content .= $this->getCMSDescription();
+        $help_content .= '<hr/><p><strong>Thumbnail:</strong></p>';
+        $help_content .= '<img style="width:100%; max-width:600px; height:auto;" src="'.self::CMSThumbnailURL().'" />';
+
+      $fields->addFieldsToTab('Root.Help', new LiteralField('help', $help_content));
+
         if (isset($_GET['modal'])) {
             Requirements::customCSS(<<<CSS
         #cms-menu,
