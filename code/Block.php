@@ -34,7 +34,8 @@ class Block extends DataObject {
     );
     
     private static $summary_fields = array(
-        'ClassName' => 'Type',
+        'ID',
+        //'ClassName' => 'Type',
         'SystemName' => 'SystemName',
         'getIsActive' => 'Active',
         'CMSThumbnail' => 'Example'
