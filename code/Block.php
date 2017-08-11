@@ -34,6 +34,7 @@ class Block extends DataObject {
     
     private static $summary_fields = array(
         'ClassName' => 'Type',
+        'SystemName' => 'SystemName',
         'getIsActive' => 'Active',
         'CMSThumbnail' => 'Example'
     );
@@ -136,10 +137,17 @@ CSS
         return Permission::check('ADMIN') || Permission::check('CMS_ACCESS_BlockAdmin') || Permission::check('CMS_ACCESS_LeftAndMain');
     }
 
-    
+
     private static $searchable_fields = array(
-        'Active'
+      'ID'     => 'PartialMatchFilter',
+      'SystemName'   => 'PartialMatchFilter',
+      'Active'
     );
+
+    public function populateDefaults() {
+      $this->SystemName = $this->getClassName();
+      parent::populateDefaults();
+    }
 
     public function getIsActive() {
         return $this->Active ? 'Yes' : 'No';
