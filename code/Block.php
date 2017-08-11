@@ -34,7 +34,7 @@ class Block extends DataObject {
     );
     
     private static $summary_fields = array(
-        'ID',
+        'ID'=>'ID',
         //'ClassName' => 'Type',
         'SystemName' => 'SystemName',
         'getIsActive' => 'Active',
