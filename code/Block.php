@@ -38,7 +38,7 @@ class Block extends DataObject {
     'ClassName' => 'Type',
     'SystemName' => 'SystemName',
     'getIsActive' => 'Active',
-    'CMSThumbnail' => 'Example',
+    'CMSThumbnail' => 'Preview',
     'PageTitles' => 'Appears on'
   );
 
