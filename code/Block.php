@@ -20,6 +20,7 @@ class Block extends DataObject {
 
     private static $db = array(
         'Active' => 'Boolean',
+        'SystemName' => 'Varchar',
     );
     private static $belongs_many_many = array(
         'Pages' => 'BlocksPage'
