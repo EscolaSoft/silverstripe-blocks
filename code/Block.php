@@ -185,7 +185,7 @@ CSS
         return $this->Active ? 'Yes' : 'No';
     }
 
-    public function onBeforeWrite() {
+    protected function onBeforeWrite() {
       if($this->SystemName == '') {
         $this->SystemName = $this->getClassName();
       }
