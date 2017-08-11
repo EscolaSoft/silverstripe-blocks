@@ -1,0 +1,10 @@
+table.blocks-help { width: 100%; }
+table.blocks-help tr > * { border-bottom: 1px solid #d0d3d5; }
+table.blocks-help tbody tr:nth-child(odd) { background: #f6f7f8; }
+table.blocks-help td { padding: 10px; }
+table.blocks-help th { padding: 10px; }
+table.blocks-help th { font-weight: bold; }
+table.blocks-help img { width: 100%; height: auto; display: block; }
+table.blocks-help .name { width: 15%; }
+table.blocks-help .thumbnail { width: 60%; }
+table.blocks-help .description { width: 25%; }
