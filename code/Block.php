@@ -185,6 +185,13 @@ CSS
         return $this->Active ? 'Yes' : 'No';
     }
 
+    public function onBeforeWrite() {
+      if($this->SystemName == '') {
+        $this->SystemName = $this->getClassName();
+      }
+      parent::onBeforeWrite();
+    }
+
     function forTemplate() {
 
         // can we include the Parent page for rendering? Perhaps use a checkbox in the CMS on the block if we should include the Page data.
