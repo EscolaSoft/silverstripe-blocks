@@ -78,7 +78,7 @@ class Block extends DataObject {
      * @return $conf
      */
     public function InlineButton($title = '') {
-        $conf = GridFieldConfig_RelationEditor::create();
+        $conf = GridFieldConfig_RelationEditor::create(999);
         $conf->removeComponentsByType('GridFieldAddNewButton');
         $conf->addComponent(new Milkyway\SS\GridFieldUtils\AddNewInlineExtended($fragment = 'buttons-before-left', $title));
         return $conf;
