@@ -9,8 +9,11 @@
 class Block extends DataObject {
 
     private static $singular_name = 'Block';
+  
     private static $plural_name = 'Blocks';
+  
     private static $first_write = false;
+  
     protected $help = '';
 
     const DIR_BLOCK = '/mysite/images/blocks/';
@@ -187,7 +190,7 @@ class Block extends DataObject {
               top: auto !important;
             }
 CSS
-            );
+      );
         }
         return $fields;
     }
