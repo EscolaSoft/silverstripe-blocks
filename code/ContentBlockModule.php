@@ -45,7 +45,7 @@ class ContentBlocksModule extends DataExtension {
       $SConfig->removeComponentsByType('GridFieldAddNewButton');
       $SConfig->addComponent($gfanmc);
     }
-    $helpbutton = new Milkyway\SS\GridFieldUtils\HelpButton('buttons-before-right', 'Pomoc (lista typów bloków)');
+    $helpbutton = new Milkyway\SS\GridFieldUtils\HelpButton('buttons-before-right', 'Help (Block type list)');
     $content = $this->getDynamicHelpContent($classes);
     $helpbutton->setContent($content);
 
