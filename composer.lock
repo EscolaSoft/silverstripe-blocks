@@ -1,0 +1,111 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "dde4acbcb0a6496ecf1a6ad2123ce238",
+    "content-hash": "5dca5c5d0139ca9d39b7a0f894961f8a",
+    "packages": [
+        {
+            "name": "symfony/finder",
+            "version": "2.8.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/finder.git",
+                "reference": "4f4e84811004e065a3bb5ceeb1d9aa592630f9ad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/4f4e84811004e065a3bb5ceeb1d9aa592630f9ad",
+                "reference": "4f4e84811004e065a3bb5ceeb1d9aa592630f9ad",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Finder\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Finder Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-06-01 20:52:29"
+        },
+        {
+            "name": "youknowriad/oossh",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/youknowriad/OOSSH.git",
+                "reference": "0ea51faae212679db1e642748ec157a777dc7fbd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/youknowriad/OOSSH/zipball/0ea51faae212679db1e642748ec157a777dc7fbd",
+                "reference": "0ea51faae212679db1e642748ec157a777dc7fbd",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/finder": ">=2.1.0,<3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "OOSSH": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Yohan Giarelli",
+                    "email": "yohan@giarel.li",
+                    "homepage": "http://yohan.giarel.li"
+                }
+            ],
+            "description": "Object Oriented SSH for PHP",
+            "homepage": "https://github.com/frequence-web/OOSSH",
+            "keywords": [
+                "ssh"
+            ],
+            "time": "2012-10-16 08:12:30"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "youknowriad/oossh": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

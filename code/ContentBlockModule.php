@@ -21,12 +21,13 @@ class ContentBlocksModule extends DataExtension {
 
   public function updateCMSFields(FieldList $fields) {
     // Relation handler for Blocks
-    $SConfig = GridFieldConfig_RelationEditor::create(25);
+    $SConfig = GridFieldConfig_RelationEditor::create(125);
     if (class_exists('GridFieldOrderableRows')) {
       $SConfig->addComponent(new GridFieldOrderableRows('SortOrder'));
     }
 
-
+    $SConfig->removeComponentsByType('GridFieldAddExistingAutocompleter');
+    $SConfig->addComponent(new GridFieldDuplicateBlocksButton("buttons-before-right"));
 
     $SConfig->addComponent(new GridFieldDeleteAction());
 
