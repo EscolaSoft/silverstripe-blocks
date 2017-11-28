@@ -18,6 +18,31 @@ class ContentBlocksModule extends DataExtension {
       'SortOrder' => 'Int'
     )
   );
+    
+  private static $db = array(
+    'SearchBlockContent'=>'Text'
+  );
+
+  private static $searchable_fields = array(
+    'SearchBlockContent'    
+  );
+
+  public function onBeforeWrite() {
+    
+    $originalThemeEnabled = Config::inst()->get('SSViewer', 'theme_enabled');
+    Config::inst()->update('SSViewer', 'theme', SSViewer::current_theme());
+    Config::inst()->update('SSViewer', 'theme_enabled', true);
+
+    $this->owner->SearchBlockContent = '';
+    foreach($this->owner->Blocks() as $block) {
+      $this->owner->SearchBlockContent .= $block->forTemplate();
+    }
+    $this->owner->SearchBlockContent = strip_tags($this->owner->SearchBlockContent);
+    $this->owner->SearchBlockContent = preg_replace('/\s+/', ' ', $this->owner->SearchBlockContent);
+
+    Config::inst()->update('SSViewer', 'theme_enabled', $originalThemeEnabled);
+
+  }
 
   public function updateCMSFields(FieldList $fields) {
     // Relation handler for Blocks
