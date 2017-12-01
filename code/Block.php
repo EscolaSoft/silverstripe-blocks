@@ -47,15 +47,6 @@ class Block extends DataObject
         return implode(', ', $titles);
     }
 
-    /**
-     * Configuration style WYSIWYG (TinyMCE) for Title
-     * Title- > HTMLVarchar
-     *
-     */
-    public function __construct($record = null, $isSingleton = false, $model = null)
-    {
-        parent::__construct($record, $isSingleton, $model);
-    }
 
     public function createStringAsHTML($html)
     {

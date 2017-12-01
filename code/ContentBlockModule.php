@@ -7,6 +7,7 @@ use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 use SilverStripe\Forms\GridField\GridFieldAddNewButton;
 use SilverStripe_Blocks\GridFieldDuplicateBlocksButton;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+use SilverStripe\View\Requirements;
 use Symbiote\GridFieldExtensions\GridFieldAddExistingSearchButton;
 
 class ContentBlocksModule extends DataExtension
@@ -22,6 +23,12 @@ class ContentBlocksModule extends DataExtension
             'SortOrder' => 'Int'
         ]
     ];
+	
+	
+	public function __construct() {
+		parent::__construct();
+		Requirements::css("silverstripe-blocks/css/blocks.css");
+	}
 
     public function updateCMSFields(\SilverStripe\Forms\FieldList $fields)
     {
@@ -37,9 +44,9 @@ class ContentBlocksModule extends DataExtension
         $SConfig->addComponent(new \SilverStripe\Forms\GridField\GridFieldDeleteAction());
 
         // If the copy button module is installed, add copy as option
-        if (class_exists('GridFieldCopyButton')) {
-            $SConfig->addComponent(new GridFieldCopyButton(), 'GridFieldDeleteAction');
-        }
+//        if (class_exists('GridFieldCopyButton')) {
+//            $SConfig->addComponent(new GridFieldCopyButton(), 'GridFieldDeleteAction');
+//        }
 
         $gridField = new \SilverStripe\Forms\GridField\GridField("Blocks", "Content blocks", $this->owner->Blocks(), $SConfig);
         $classes = array_values(\SilverStripe\Core\ClassInfo::subclassesFor($gridField->getModelClass()));
