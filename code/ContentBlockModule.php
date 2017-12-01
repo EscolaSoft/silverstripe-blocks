@@ -39,11 +39,13 @@ class ContentBlocksModule extends DataExtension
         }
 
         $SConfig->removeComponentsByType('SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter');
-        //$SConfig->addComponent(new GridFieldDuplicateBlocksButton("buttons-before-right"));
+        //TODO: Internal Server Error
+		//$SConfig->addComponent(new GridFieldDuplicateBlocksButton());
 
         $SConfig->addComponent(new \SilverStripe\Forms\GridField\GridFieldDeleteAction());
 
         // If the copy button module is installed, add copy as option
+		// TODO:silverstripe-copybutton no compatibility SS4
 //        if (class_exists('GridFieldCopyButton')) {
 //            $SConfig->addComponent(new GridFieldCopyButton(), 'GridFieldDeleteAction');
 //        }

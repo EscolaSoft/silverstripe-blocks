@@ -4,6 +4,8 @@ namespace SilverStripe_Blocks;
 
 use SilverStripe\ORM\DataObject;
 use SilverStripe_Blocks\Pages\BlocksPage;
+use SilverStripe\Control\Director;
+use SilverStripe\Control\Controller;
 
 class Block extends DataObject
 {

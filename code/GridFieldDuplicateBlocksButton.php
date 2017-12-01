@@ -4,6 +4,8 @@ namespace SilverStripe_Blocks;
 
 use SilverStripe\Forms\GridField\GridField_ActionProvider;
 use SilverStripe\Forms\GridField\GridField_HTMLProvider;
+use SilverStripe\Core\ClassInfo;
+use SilverStripe\Control\Controller;
 
 class GridFieldDuplicateBlocksButton implements GridField_HTMLProvider, GridField_ActionProvider
 {
