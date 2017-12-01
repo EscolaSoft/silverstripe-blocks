@@ -120,6 +120,6 @@ HTML;
 
     public function OneBlock($id)
     {
-        return \Tools\Blocks\Block::get()->byID($id);
+        return \SilverStripe_Blocks\Block::get()->byID($id);
     }
 }
