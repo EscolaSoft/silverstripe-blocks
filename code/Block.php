@@ -1,53 +1,49 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: qunabu
  * Date: 20.07.17
  * Time: 14:07
  */
-
 class Block extends DataObject {
 
   private static $singular_name = 'Block';
-
   private static $plural_name = 'Blocks';
-
   private static $first_write = false;
-
   protected $help = '';
 
   const DIR_BLOCK = '/mysite/images/blocks/';
 
   private static $db = array(
-    'Active' => 'Boolean',
-    'SystemName' => 'Varchar',
+      'Active' => 'Boolean',
+      'SystemName' => 'Varchar',
   );
   private static $belongs_many_many = array(
-    'Pages' => 'BlocksPage'
+      'Pages' => 'BlocksPage'
   );
   private static $defaults = array(
-    'Active' => 1,
-    'Page_Blocks[SortOrder]' => 999, // TODO: Fix sorting, new blocks should be added to the bottom of the list/gridfield
+      'Active' => 1,
+      'Page_Blocks[SortOrder]' => 999, // TODO: Fix sorting, new blocks should be added to the bottom of the list/gridfield
   );
   private static $casting = array(
-    'createStringAsHTML' => 'HTMLText'
+      'createStringAsHTML' => 'HTMLText'
   );
-
   private static $summary_fields = array(
-    'ID'=>'ID',
-    'ClassName' => 'Type',
-    'SystemName' => 'SystemName',
-    'getIsActive' => 'Active',
-    'CMSThumbnail' => 'Preview',
-    'PageTitles' => 'Appears on'
+      'ID' => 'ID',
+      'ClassName' => 'Type',
+      'SystemName' => 'SystemName',
+      'getIsActive' => 'Active',
+      'CMSThumbnail' => 'Preview',
+      'PageTitles' => 'Appears on'
   );
 
   public function getPageTitles() {
     $titles = array();
-    foreach($this->Pages() as $page) {
+    foreach ($this->Pages() as $page) {
       $titles[] = $page->Title;
     }
-    return implode(', ',$titles);
+    return implode(', ', $titles);
   }
 
   /**
@@ -75,16 +71,48 @@ class Block extends DataObject {
     return $casted;
   }
 
+  /**
+   * Add Inline Button for GirdField  more user friendly, so you can add many DataObject on one admin page without useless clicks.
+   * @param GridFieldConfig $conf =  GridFieldConfig_RelationEditor::create()
+   * @param string $title
+   * @return $conf
+   */
+  public function InlineButton($title = '') {
+    $conf = GridFieldConfig_RelationEditor::create(999);
+    $conf->removeComponentsByType('GridFieldAddNewButton');
+    $conf->addComponent(new Milkyway\SS\GridFieldUtils\AddNewInlineExtended($fragment = 'buttons-before-left', $title));
+    return $conf;
+  }
 
+  /**
+   *
+   * @param string $ButtonValue
+   * @param string $name
+   * @param string $title
+   * @param object $value
+   * @param boolean $orderable
+   * @return \GridField
+   */
+  public function GridFieldGenerator($ButtonValue, $name, $title, $value, $orderable = true) {
+    $conf = $this->InlineButton($ButtonValue);
+    $grid = new GridField(
+            $name, $title, $value, $conf
+    );
+    if ($orderable) {
+      $grid->getConfig()->addComponent(new GridFieldOrderableRows());
+    }
+    return $grid;
+  }
 
   /**
    * Path File Thumbnail
    * @return path file
    */
   public static function CMSThumbnailPath() {
-    $filename = BASE_PATH.self::DIR_BLOCK. self::singleton()->class . '.png';
+    $filename = BASE_PATH . self::DIR_BLOCK . self::singleton()->class . '.png';
     return $filename;
   }
+
   /**
    *
    * @return URL image
@@ -93,7 +121,7 @@ class Block extends DataObject {
     $filename = self::CMSThumbnailPath();
 
     if (is_file($filename)) {
-      return BASE_URL.self::DIR_BLOCK. self::singleton()->class . '.png';
+      return BASE_URL . self::DIR_BLOCK . self::singleton()->class . '.png';
     }
     return FALSE;
   }
@@ -101,7 +129,7 @@ class Block extends DataObject {
   public static function getCMSThumbnail() {
     $url = self::CMSThumbnailURL();
     $output = HTMLText::create();
-    $output ->setValue('<img style="width:100px; height:auto;" src="'.$url.'" />');
+    $output->setValue('<img style="width:100px; height:auto;" src="' . $url . '" />');
     return $output;
   }
 
@@ -109,7 +137,7 @@ class Block extends DataObject {
     return 'HELP please provide help!!!!';
   }
 
-  public function CMSHelp(){
+  public function CMSHelp() {
     return self::getCMSHelp();
   }
 
@@ -117,7 +145,7 @@ class Block extends DataObject {
     return 'HELP please provide description!!!!';
   }
 
-  public function CMSDescription(){
+  public function CMSDescription() {
     return self::getCMSDescription();
   }
 
@@ -125,10 +153,9 @@ class Block extends DataObject {
    * image thumbnail
    * @return HTML
    */
-  public function CMSThumbnail(){
+  public function CMSThumbnail() {
     return self::getCMSThumbnail();
   }
-
 
   public function getCMSFields() {
     $fields = parent::getCMSFields();
@@ -139,7 +166,7 @@ class Block extends DataObject {
     $help_content .= '<hr/><p><strong>Instruction:</strong></p>';
     $help_content .= $this->getCMSDescription();
     $help_content .= '<hr/><p><strong>Thumbnail:</strong></p>';
-    $help_content .= '<img style="width:100%; max-width:600px; height:auto;" src="'.self::CMSThumbnailURL().'" />';
+    $help_content .= '<img style="width:100%; max-width:600px; height:auto;" src="' . self::CMSThumbnailURL() . '" />';
 
     $fields->addFieldsToTab('Root.Help', new LiteralField('help', $help_content));
 
@@ -181,11 +208,10 @@ CSS
     return Permission::check('ADMIN') || Permission::check('CMS_ACCESS_BlockAdmin') || Permission::check('CMS_ACCESS_LeftAndMain');
   }
 
-
   private static $searchable_fields = array(
-    'ID'     => 'PartialMatchFilter',
-    'SystemName'   => 'PartialMatchFilter',
-    'Active'
+      'ID' => 'PartialMatchFilter',
+      'SystemName' => 'PartialMatchFilter',
+      'Active'
   );
 
   public function populateDefaults() {
@@ -198,7 +224,7 @@ CSS
   }
 
   protected function onBeforeWrite() {
-    if($this->SystemName == '') {
+    if ($this->SystemName == '') {
       $this->SystemName = $this->getClassName();
     }
     parent::onBeforeWrite();
