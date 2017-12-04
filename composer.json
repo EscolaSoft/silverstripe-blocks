@@ -4,5 +4,8 @@
 	"keywords": ["silverstripe", "CMS"],
 	"license": "BSD-3-Clause",
 	"minimum-stability": "dev",
-  "type": "silverstripe-module"
+  "type": "silverstripe-module",
+	"require": {
+		"youknowriad/oossh": "dev-master"
+	}
 }

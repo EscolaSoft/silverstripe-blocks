@@ -64,3 +64,4 @@ class GridFieldDuplicateBlocksButton implements GridField_HTMLProvider, GridFiel
         Controller::curr()->redirectBack();
     }
 }
+

@@ -1,5 +1,6 @@
 <?php
 
+
 namespace SilverStripe_Blocks;
 
 use SilverStripe\ORM\DataExtension;
