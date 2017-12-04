@@ -8,3 +8,7 @@ table.blocks-help img { width: 100%; height: auto; display: block; }
 table.blocks-help .name { width: 15%; }
 table.blocks-help .thumbnail { width: 60%; }
 table.blocks-help .description { width: 25%; }
+.add-existing-search {
+    font-weight: bold;
+    padding: 0.5%;
+}
